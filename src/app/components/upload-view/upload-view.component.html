@@ -1,0 +1,27 @@
+<!-- show a small thumbnail of the image in the list of images
+and the total number of images left to upload -->
+<mat-card class="mat-elevation-z8 small-card" *ngIf="files.length > 0">
+  <mat-card-header *ngIf="percentage < 100">
+    <mat-card-title>Uploading</mat-card-title>
+    <mat-card-subtitle> {{ files.length }} files </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-header *ngIf="percentage == 100">
+    <mat-card-title>Upload Complete</mat-card-title>
+    <mat-card-subtitle>{{ files.length }} files uploaded </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- mat card imange -->
+
+    <img mat-card-image id="imagePreview" class="mat-card-img-sized" />
+    <!-- progress bar -->
+    <mat-progress-bar
+      *ngIf="percentage < 100"
+      mode="determinate"
+      [value]="percentage"
+    ></mat-progress-bar>
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- add a close button -->
+    <button mat-button (click)="closeUploadView()">Close</button>
+  </mat-card-actions>
+</mat-card>

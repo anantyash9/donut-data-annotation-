@@ -1,0 +1,120 @@
+<!-- huge text field to enter the title -->
+
+<div class="main">
+  <div class="center">
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Title"
+        placeholder="What is the dataset called ?"
+        [(ngModel)]="title"
+        (change)="setDatasetTitle(title)"
+      />
+    </mat-form-field>
+        <!-- show uploaded images in a grid with 4 columns -->
+        <mat-grid-list [cols]="3"  rowHeight="1:1" gutterSize="10px" *ngIf="uploadedImages.length>0">
+          <mat-grid-tile *ngFor="let image of uploadedImages">
+                <img mat-card-image [src]="'http://localhost:9099/test/'+image">
+          </mat-grid-tile>
+        </mat-grid-list>
+  </div>
+
+  <div class="ir1Wne"  >
+
+
+
+
+    <div class="FHHhzf" *ngIf="title != '' && files.length == 0">
+      <div class="go6nxb">Add documents</div>
+      <div
+        jscontroller="Jwyeu"
+        jsmodel="IlPHwb"
+        jsaction="JIbuQc:KjsqPd;"
+        data-enable-notification="true"
+      >
+        <div
+          class="VfPpkd-WsjYwc VfPpkd-WsjYwc-OWXEXe-INsAgc KC1dQ Usd1Ac AaN0Dd RYkob"
+        >
+          <div class="VfPpkd-EScbFb-JIbuQc" tabindex="0">
+            <div class="efPNcb">
+              <div class="ooRjRb">
+                <mat-icon class="material-icons blue"
+                  >insert_drive_file</mat-icon
+                >
+              </div>
+              <div class="kfGuOd">
+                <div class="MXxZYe">Select document types &amp; domains</div>
+                <div class="NbrDvb">Create an auto-updating dataset</div>
+              </div>
+            </div>
+            <div class="VfPpkd-FJ5hab"></div>
+          </div>
+          <span class="VfPpkd-BFbNVe-bF1uUb NZp2ef" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div
+        jscontroller="vrl8Ld"
+        jsaction="JIbuQc:KjsqPd;"
+        id="ow535"
+        __is_owner="true"
+      >
+        <div
+          class="VfPpkd-WsjYwc VfPpkd-WsjYwc-OWXEXe-INsAgc KC1dQ Usd1Ac AaN0Dd RYkob"
+        >
+          <div
+            class="VfPpkd-EScbFb-JIbuQc"
+            tabindex="0"
+            style="
+              --mdc-ripple-fg-size: 192px;
+              --mdc-ripple-fg-scale: 1.78761;
+              --mdc-ripple-fg-translate-start: 12.6953px, -52.1953px;
+              --mdc-ripple-fg-translate-end: 64.6953px, -52px;
+            "
+          >
+            <!-- hidden files input allow only images-->
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              #file
+              style="display: none"
+              (change)="uploadFiles($event)"
+            />
+            <!-- open file dialog when clicked -->
+            <div class="efPNcb" (click)="file.click()">
+              <div class="ooRjRb">
+                <mat-icon class="material-icons blue larger">add</mat-icon>
+              </div>
+              <div class="kfGuOd">
+                <div class="MXxZYe">Upload documents</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--display a grid of images -->
+  <input
+  type="file"
+  multiple
+  accept="image/*"
+  #file
+  style="display: none"
+  (change)="uploadFiles($event)"
+/>
+<div class ='top-right-floating-button'>
+  <button mat-fab color="accent"  aria-label="add dataset" (click)="file.click()" *ngIf="uploadedImages.length>0">
+    <!-- plus icon -->
+    <mat-icon>add</mat-icon>
+  </button>
+  <span class="button-spacing"></span>
+  <button mat-fab color="warm" aria-label="Save dataset" (click)="saveDataset()" *ngIf="uploadedImages.length>0">
+    <!-- plus icon -->
+    <mat-icon>save</mat-icon>
+  </button>
+</div>
+
+  <app-upload-view></app-upload-view>
+</div>

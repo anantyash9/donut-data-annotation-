@@ -1,0 +1,16 @@
+<div fxLayout="column" class="after-navbar">
+    <div fxFlex style="margin: 20px">
+      <img
+        [src]="imageChangedEvent"
+        crossorigin="anonymous"
+        (click)="showMarkerArea()"
+        id="image"
+      />
+    </div>
+  
+    <button (click)="save()">save</button>
+  </div>
+  
+  <br />
+  <br />
+  <div *ngIf="imgUrl">{{ imgUrl }}</div>

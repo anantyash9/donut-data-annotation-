@@ -1,0 +1,31 @@
+ 
+  <div class="after-navbar" >
+<!-- add a title "Datasets" followed by a grid list of albums -->
+<mat-toolbar color="basic" class="mat-toolbar-row ">
+  <span>Datasets</span>
+  <!-- add button with icon and text to arrange albums by date  -->
+  <span class="spacer"></span>
+  <button mat-button (click)="openDialog()" class="grey-text grey-icon">
+    <mat-icon>date_range</mat-icon>
+    <span> Last modified</span>
+  </button>
+
+</mat-toolbar>
+
+
+  <mat-grid-list [cols]="5"  rowHeight="1:1.2" gutterSize="20px" >
+  <mat-grid-tile *ngFor="let album of albums" class="round-corner clickable zoom-on-hover" (click)="openDataset(album)">
+        <img  [src]="'http://localhost:9099/test/'+album.coverImage">
+        <!-- insert title below image -->
+        <mat-grid-tile-footer class="large-text">
+         {{album.title | titlecase}}
+        </mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>
+<!-- add a add new album button -->
+<button mat-fab color="accent" class ='top-right-floating-button' aria-label="add dataset" (click)="addDataset()">
+    <!-- plus icon -->
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>

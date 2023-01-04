@@ -1,0 +1,85 @@
+<!-- mat dialogue to generate data -->
+
+<h2 mat-dialog-title>Generate Traning Data</h2>
+<div mat-dialog-content *ngIf="!traningData">
+  <mat-form-field>
+    <mat-label>Number of samples per Image</mat-label>
+    <input matInput type="number" [(ngModel)]="numberOfSamples" />
+  </mat-form-field>
+  <!-- //mat form field with a slider for train test split -->
+  <br />
+  <h3>Train,test and validation split</h3>
+  <!-- call balence method when the slider is changed -->
+  <div class="label-container">
+    <div class="slider-container">
+      <label id="example-name-label" class="name-label">{{ train }}</label>
+      <mat-slider
+        min="0"
+        max="100"
+        step="1"
+        [(ngModel)]="train"
+        [vertical]="true"
+        (input)="onInputChangeTrain($event)"
+      >
+        <input matSliderThumb [(ngModel)]="train" />
+      </mat-slider>
+      <label class="value-label">Train</label>
+    </div>
+    <div class="slider-container">
+      <label id="example-name-label" class="name-label">{{ test }}</label>
+      <mat-slider
+        min="0"
+        max="100"
+        step="1"
+        [(ngModel)]="test"
+        [vertical]="true"
+        (input)="onInputChangeTest($event)"
+      >
+        <input matSliderThumb [(ngModel)]="test" />
+      </mat-slider>
+      <label class="value-label">Test</label>
+    </div>
+    <div class="slider-container">
+      <label id="example-name-label" class="name-label">{{ validation }}</label>
+      <mat-slider
+        min="0"
+        max="100"
+        step="1"
+        [(ngModel)]="validation"
+        [vertical]="true"
+        (input)="onInputChangeValidation($event)"
+      >
+        <input matSliderThumb [(ngModel)]="validation" />
+      </mat-slider>
+      <label class="value-label">Validation</label>
+    </div>
+  </div>
+    <br />
+  <button mat-raised-button color="primary" (click)="generateTraningData()">
+    Generate Data
+    </button>
+</div>
+<div mat-dialog-content *ngIf="traningData">
+    <!-- show the percentage of completion of the data generation -->
+    <mat-progress-bar
+      mode="determinate"
+      [value]="traningData.percentage"
+     ></mat-progress-bar>
+    <!-- click to copy the link  -->
+    <div *ngIf="traningData.percentage==100">
+      <p>Download Link</p>
+      <input
+        type="text"
+        value="{{ traningData.downloadLink }}"
+        #input
+        readonly
+      />
+      <button mat-raised-button color="primary" (click)="copyLink(input)">
+        Copy Link
+      </button>
+      <!-- //button to delete the traning data -->
+        <button mat-raised-button color="warn" (click)="deleteTraningData()">
+            Delete Data
+        </button>
+    
+</div>

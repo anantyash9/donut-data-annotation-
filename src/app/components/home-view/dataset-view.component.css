@@ -1,0 +1,39 @@
+.top-right-floating-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+.after-navbar {
+  margin-top: 64px;
+}
+.card-height {
+  height: 30vh;
+}
+.round-corner {
+  border-radius: 8px;
+  display: block;
+  /* arrange elements vertically */
+  flex-direction: column;
+}
+.large-text {
+  font-size: 1.5em;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+/* set text and icon color to grey */
+.grey-text {
+  color: #757575;
+}
+.grey-icon {
+  color: #757575;
+}
+/* clickable */
+.clickable {
+  cursor: pointer;
+}
+/* zoom on hover */
+.zoom-on-hover:hover {
+  transform: scale(1.05);
+}

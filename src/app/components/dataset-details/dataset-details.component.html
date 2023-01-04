@@ -1,0 +1,52 @@
+<!-- huge text field to enter the title -->
+
+<div class="main">
+  <div class="center">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [(ngModel)]="dataset.title"
+        [readonly]="true"
+      />
+    </mat-form-field>
+        <!-- show uploaded images in a grid with 4 columns -->
+        <mat-grid-list [cols]="3"  rowHeight="1:1" gutterSize="10px" *ngIf="images.length>0">
+          <mat-grid-tile *ngFor="let image of images" class="clickable zoom-on-hover highlight-on-hover" (click)="openImageTagger(image)">
+                <img mat-card-image [src]="'http://localhost:9099/test/'+image.id+'.'+image.fileExtension">
+          </mat-grid-tile>
+        </mat-grid-list>
+  </div>
+
+  <div class="ir1Wne"  >
+  </div>
+  <!--display a grid of images -->
+  <input
+  type="file"
+  multiple
+  accept="image/*"
+  #file
+  style="display: none"
+  (change)="uploadFiles($event)"
+/>
+<div class ='top-right-floating-button'>
+  <button mat-fab color="accent"  aria-label="add dataset" (click)="file.click()" *ngIf="uploadedImages.length>0">
+    <!-- plus icon -->
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openTrainingData()">
+      <mat-icon>dialpad</mat-icon>
+      <span>Traning Data</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Delete Dataset</span>
+    </button>
+  </mat-menu>
+</div>
+
+  <app-upload-view></app-upload-view>
+</div>

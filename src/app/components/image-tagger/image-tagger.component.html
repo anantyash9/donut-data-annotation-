@@ -1,0 +1,64 @@
+<div class="top">
+    <div class="left">
+        <img id="image" src="" class="image"  (click)="showMarkerArea()" [ngStyle]="{'width': autoHeight()?'100%':'auto', 'height': autoHeight()?'auto':'95%'}"/>
+        </div>
+    <div class="right">
+            
+            <!-- a rectangiular button to add a new field -->
+            <div class="fields-list">
+                <!-- mat card for each field -->
+                
+        <div class="title" *ngIf="fieldList.length>0">Fields</div>
+                <mat-card *ngFor="let field of fieldList; let i = index" class="field-card">
+                    <mat-card-header>
+                        <mat-card-title>{{field.key}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="fields">
+                        <div><span>Type: {{field.value_type}}</span></div>
+                        <div *ngIf="field.value_type === 'numeric' || field.value_type === 'alphabet' || field.value_type === 'alphanumeric'">
+                            <span>Length: {{field.length}}</span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>  
+            </div>
+    <!-- a form to create new field  -->
+    <form [formGroup]="newFieldForm" class="new-field-form" *ngIf="newFieldFormVisible">
+        <div class="title">Add Field</div>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Field Name" formControlName="key">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <!-- dropdown to select field type -->
+            <mat-select placeholder="Field Type" formControlName="value_type">
+                <mat-option value="name">Name</mat-option>
+                <mat-option value="address">Address</mat-option>
+                <mat-option value="date">Date</mat-option>
+                <mat-option value="numeric">Numeric Series</mat-option>
+                <mat-option value="alphabet">Alphabet series</mat-option>
+                <mat-option value="alphanumeric">Alphanumeric series</mat-option>
+            </mat-select>
+            
+        </mat-form-field>
+        <div *ngIf="newFieldForm.get('value_type').value === 'numeric' || newFieldForm.get('value_type').value === 'alphabet' || newFieldForm.get('value_type').value === 'alphanumeric'">
+        <mat-form-field class="full-width" >
+            <input matInput placeholder="Field Value" formControlName="length" type="number">
+        </mat-form-field>
+        </div>
+        <br>
+        <button mat-raised-button color="primary" class="add-field-button" (click)="saveField()">
+            <mat-icon>save</mat-icon>
+            <span>Save</span>
+        </button>
+    </form>
+    <!-- a list of all fields -->
+
+    </div>
+    <!-- a floating button to go to next image -->
+    <button mat-fab color="basic" class="top-right-floating-button" aria-label="next image" (click)="nextImage()">
+        <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <!-- same for previous image -->
+    <button mat-fab color="basic"  class="top-left-floating-button" aria-label="previous image" (click)="previousImage()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
